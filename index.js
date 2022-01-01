@@ -28,7 +28,7 @@ console.log(uri)
 async function run() {
     try {
         await client.connect();
-        const database = client.db('DGP');
+        const database = client.db('DigitalVillage');
         const userCollection = database.collection('users');
         const repairCollection = database.collection('repair');
         const requestServiceCollection = database.collection('requestService');
