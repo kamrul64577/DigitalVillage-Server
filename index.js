@@ -170,40 +170,40 @@ async function run() {
 
 
 
-        // // Request Service API 
-        // app.post('/insertRequestService', async (req, res) => {
-        //     const requestService = req.body;
-        //     const result = await requestServiceCollection.insertOne(requestService);
-        //     res.json(result);
-        //     console.log(result);
-        // });
+        // Request Service API 
+        app.post('/insertRequestService', async (req, res) => {
+            const requestService = req.body;
+            const result = await requestServiceCollection.insertOne(requestService);
+            res.json(result);
+            console.log(result);
+        });
 
-        // app.get('/requestServices', async (req, res) => {
-        //     const cursor = requestServiceCollection.find({});
-        //     const requestService = await cursor.toArray();
-        //     res.json(requestService);
-        // })
-        // app.delete('/requestServices/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await requestServiceCollection.deleteOne(query);
-        //     res.json(result)
-        // })
+        app.get('/requestServices', async (req, res) => {
+            const cursor = requestServiceCollection.find({});
+            const requestService = await cursor.toArray();
+            res.json(requestService);
+        })
+        app.delete('/requestServices/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await requestServiceCollection.deleteOne(query);
+            res.json(result)
+        })
 
 
 
-        // // RequestRepairing Api 
-        // app.get('/requestRepairing', async (req, res) => {
-        //     const cursor = repairCollection.find({});
-        //     const requestRepairing = await cursor.toArray();
-        //     res.json(requestRepairing);
-        // })
-        // app.delete('/requestRepairing/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await repairCollection.deleteOne(query);
-        //     res.json(result)
-        // })
+        // RequestRepairing Api 
+        app.get('/requestRepairing', async (req, res) => {
+            const cursor = repairCollection.find({});
+            const requestRepairing = await cursor.toArray();
+            res.json(requestRepairing);
+        })
+        app.delete('/requestRepairing/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await repairCollection.deleteOne(query);
+            res.json(result)
+        })
 
 
 
