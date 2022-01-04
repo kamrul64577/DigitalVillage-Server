@@ -32,6 +32,7 @@ async function run() {
         const bookingCollection = database.collection('booking');
         const birthCollection = database.collection('birth');
         const deathCollection = database.collection('death');
+        const reviewCollection = database.collection('reviews')
         
 
         // Users And Users Role 
@@ -301,6 +302,7 @@ async function run() {
             const event = await cursor.toArray();
             res.json(event);
         });
+        
         app.put('/booking', async (req, res) => {
             const { id, updateStatus } = req.body;
             const query = { _id: ObjectId(id) };
@@ -363,6 +365,19 @@ async function run() {
             const result = await deathCollection.deleteOne(query);
             res.json(result)
         })
+           // reviews
+   app.post('/reviews', async (req, res) =>{
+    const reviewData = req.body;
+    const result = await reviewCollection.insertOne(reviewData);
+    console.log(result)
+    res.json(result)
+   })
+    //get all reviews
+    app.get('/reviews', async (req, res) =>{
+        const cursor = reviewCollection.find({});
+        const review = await cursor.toArray()
+         res.send(review)
+     })
 
         
         
