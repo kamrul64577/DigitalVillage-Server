@@ -3,13 +3,18 @@ const app = express();
 const cors = require('cors');
 const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config();
-const { MongoClient, Admin } = require('mongodb');
+const { MongoClient} = require('mongodb');
 const port = process.env.PORT || 5000;
 
 
 // Middlewear
 app.use(cors());
 app.use(express.json());
+
+// var corsOptions = {
+//     origin: 'http://example.com',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ib20y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
