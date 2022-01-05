@@ -293,7 +293,12 @@ async function run() {
             const result = await registerEventCollection.deleteOne(query);
             res.json(result)
         });
-
+     //my events
+     app.get('/myEvents/:email', async(req, res) =>{
+     console.log(req.params.email);
+     const result = await eventCollection.find({email: req.params.email}).toArray();
+     res.send(result)
+     })
 
 
 
@@ -414,6 +419,7 @@ async function run() {
         console.log('deleting user with id', result);
         res.json(result);
        })
+
         
     }
     finally {
