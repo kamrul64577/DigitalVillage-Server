@@ -40,6 +40,8 @@ async function run() {
         const birthCollection = database.collection('birth');
         const deathCollection = database.collection('death');
         const reviewCollection = database.collection('reviews')
+        const serviceBookingCollection = database.collection('allServiceBooking')
+        
         
 
         // Users And Users Role 
@@ -386,9 +388,33 @@ async function run() {
          res.send(review)
      })
 
-        
-        
-
+        //service booking
+        app.post('/ServiceBooking', async (req, res) =>{
+            const bookingData = req.body;
+            const result = await serviceBookingCollection.insertOne(bookingData);
+            console.log(result)
+            res.json(result)
+        })
+     // get Servicebooking
+      app.get('/ServiceBooking', async (req, res) =>{
+        const cursor = serviceBookingCollection.find({});
+        const cars = await cursor.toArray()
+        res.send(cars)
+    })
+ // get my booking for 
+   app.get('/myServiceBooking/:email', async(req, res) =>{
+   console.log(req.params.email);
+   const result = await serviceBookingCollection.find({email: req.params.email}).toArray();
+    res.send(result)
+    })
+    //delete myservice booking
+    app.delete('/order/:id', async (req, res) =>{
+        const id = req.params.id;
+        const query = {_id: ObjectId(id)};
+        const result = await serviceBookingCollection.deleteOne(query);
+        console.log('deleting user with id', result);
+        res.json(result);
+       })
         
     }
     finally {
