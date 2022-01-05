@@ -255,6 +255,7 @@ async function run() {
             const event = await cursor.toArray();
             res.json(event);
         });
+        
         app.post('/event', async (req, res) => {
             const event = req.body;
             const result = await eventCollection.insertOne(event);
